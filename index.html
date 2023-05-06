@@ -4,11 +4,35 @@
 
 <input type="file" accept="image/*;capture=camera">
   
-  <script>
+<script>
   let div = document.createElement('div');
-  div.className("alert");
-  div.innerHTML("<strong>Hi there!</strong>");
-  document.body.prepend(div);
-  </script>
+  div.className ="alert";
+  div.innerHTML = "<strong>Hi there!</strong>";
+  document.body.append(div);
+</script>
+
+<script>
+		var board = document.createElement('canvas');
+		const h = 400;
+		board.id = "board";
+		board.width  = h;
+		board.height = h;
+		const stride = h / 8;
+  		if (board.getContext) {
+    		var ctx = board.getContext("2d");
+			for (let x = 0; x <= 7; x++) {
+				for (let y = 0; y <= 7; y++) {
+					if ((x+y) % 2) {
+						ctx.fillStyle = "#9C640C";
+						
+					} else {
+						ctx.fillStyle = "#FCF3CF";
+					}
+					ctx.fillRect(x*stride, y*stride, (x+1)*stride, (y+1)*stride);	
+				}
+			}
+		}
+		document.body.append(board);
+</script>
 </body>
 </html>
