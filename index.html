@@ -1,38 +1,63 @@
 <!DOCTYPE html>
 <html>
+<div id="board"></div>
+
+<style>
+#board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 480px;
+  height: 480px;
+  margin: auto;
+}
+
+.square {
+  width: 60px;
+  height: 60px;
+}
+
+.white {
+  background-color: #f0d9b5;
+}
+
+.black {
+  background-color: #b58863;
+}
+
+.selected {
+  border: 1px solid yellow;
+  box-sizing: border-box;
+  font-size: 40px;
+  text-align: center;
+}
+
+
+</style>
+
 <body>
+<script>
+const board = document.getElementById('board');
+let selectedSquare = null;
 
-<input type="file" accept="image/*;capture=camera">
+for (let i = 0; i < 64; i++) {
+  const square = document.createElement('div');
+  square.classList.add('square');
   
-<script>
-  let div = document.createElement('div');
-  div.className ="alert";
-  div.innerHTML = "<strong>Hi there!</strong>";
-  document.body.append(div);
-</script>
-
-<script>
-		var board = document.createElement('canvas');
-		const h = 400;
-		board.id = "board";
-		board.width  = h;
-		board.height = h;
-		const stride = h / 8;
-  		if (board.getContext) {
-    		var ctx = board.getContext("2d");
-			for (let x = 0; x <= 7; x++) {
-				for (let y = 0; y <= 7; y++) {
-					if ((x+y) % 2) {
-						ctx.fillStyle = "#9C640C";
-						
-					} else {
-						ctx.fillStyle = "#FCF3CF";
-					}
-					ctx.fillRect(x*stride, y*stride, (x+1)*stride, (y+1)*stride);	
-				}
-			}
-		}
-		document.body.append(board);
+  const isWhite = (i + Math.floor(i / 8)) % 2 === 0;
+  square.classList.add(isWhite ? 'white' : 'black');
+  
+  square.addEventListener('click', () => {
+    if (selectedSquare) {
+      selectedSquare.classList.remove('selected');
+      selectedSquare.innerHTML = null;
+    }
+    selectedSquare = square;
+    selectedSquare.classList.add('selected');
+    selectedSquare.innerHTML = "&#9820";
+  });
+  
+  board.appendChild(square);
+}
 </script>
 </body>
 </html>
