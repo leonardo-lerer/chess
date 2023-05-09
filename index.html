@@ -2,62 +2,9 @@
 <html>
 <div id="board"></div>
 
-<style>
-#board {
-  display: flex;
-  flex-wrap: wrap;
-  width: 480px;
-  height: 480px;
-  margin: auto;
-}
-
-.square {
-  width: 60px;
-  height: 60px;
-}
-
-.white {
-  background-color: #f0d9b5;
-}
-
-.black {
-  background-color: #b58863;
-}
-
-.selected {
-  border: 1px solid yellow;
-  box-sizing: border-box;
-  font-size: 40px;
-  text-align: center;
-}
-
-
-</style>
+<link rel="stylesheet" href="styles.css">
 
 <body>
-<script>
-const board = document.getElementById('board');
-let selectedSquare = null;
-
-for (let i = 0; i < 64; i++) {
-  const square = document.createElement('div');
-  square.classList.add('square');
-  
-  const isWhite = (i + Math.floor(i / 8)) % 2 === 0;
-  square.classList.add(isWhite ? 'white' : 'black');
-  
-  square.addEventListener('click', () => {
-    if (selectedSquare) {
-      selectedSquare.classList.remove('selected');
-      selectedSquare.innerHTML = null;
-    }
-    selectedSquare = square;
-    selectedSquare.classList.add('selected');
-    selectedSquare.innerHTML = "&#9820";
-  });
-  
-  board.appendChild(square);
-}
-</script>
+<script src="script2.js"></script>
 </body>
 </html>
