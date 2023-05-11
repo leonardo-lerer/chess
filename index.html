@@ -1,4 +1,4 @@
-<div id="camera_div" class="camera" style="border-style:solid;border-color:blue; width:100%; height:100%; place-items: center end;">
+<div id="camera_div" class="camera" style="border-style:solid;border-color:blue; width:100%; height:100%; place-items: center;">
 
   <video id="video">
 
@@ -20,17 +20,22 @@
 <script>
 //<link rel="stylesheet" href="style_cam.css">
 
+
+
 const width = 300;    // We will scale the photo width to this
 const height = 300;     // This will be computed based on the input stream
 
 const streaming = false;
 
 let video = document.getElementById('video');
+var win_w = window.innerWidth;
+var win_h = window.innerHeight;
+var ratio = Math.floor((1-(win_w/win_h)*0.5)*100*0.5) + "%";
+video.style.width = "50%";
+video.style.aspectRatio = "1/1";
 video.style.objectFit = "cover";
 video.style.position = "absolute";
-video.style.width = "50%";
-video.style.height = "50%";
-video.style.top = "25%";
+video.style.setProperty("top", ratio);
 video.style.left = "25%";
 video.style.outline = "solid";
 
@@ -39,13 +44,14 @@ let photo = document.getElementById('photo');
 let startbutton = document.getElementById('startbutton');
 
 let boundbox = document.createElement("div");
+ratio = Math.floor((1-(win_w/win_h)*0.2)*100*0.5) + "%";
 boundbox.style.width = "20%";
-boundbox.style.height = "20%";
+boundbox.style.aspectRatio = "1/1";
 boundbox.style.outline = "5px dashed green";
 //boundbox.style.borderColor = "red";
 // boundbox.style.zIndex = "1";
 boundbox.style.position = "absolute";
-boundbox.style.top = "40%";
+boundbox.style.setProperty("top", ratio);
 boundbox.style.left = "40%";
 
 
