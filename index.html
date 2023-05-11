@@ -1,32 +1,38 @@
-<!DOCTYPE html>
-<div class="camera" style="border-style:solid;border-color:blue; width:100%; height:100%;">
+<div id="camera_div" class="camera" style="border-style:solid;border-color:blue; width:100%; height:100%; place-items: center end;">
 
   <video id="video">
 
   </video>
 
-  <button id="startbutton" style="position=relative";>Take photo</button>
 </div>
-
-<canvas id="canvas"> </canvas>
-<div class="output">
-  <img id="photo" alt="The screen capture will appear in this box." />
+<div id="button_div" style="text-align:center;">
+<button id="startbutton" style="margin: auto;";>Take photo</button>
 </div>
+<div id="output_div" style="text-align:center; margin:auto;">
+<canvas id="canvas" style="text-align:center;"> </canvas>
+</div>
+<!-- 
+<div class="output" style="text-align:center;">
+  <img id="photo" alt="The screen capture will appear in this box." style="margin:auto;"/>
+</div>
+ -->
 
 <script>
-const width = 320;    // We will scale the photo width to this
-const height = 200;     // This will be computed based on the input stream
+//<link rel="stylesheet" href="style_cam.css">
+
+const width = 300;    // We will scale the photo width to this
+const height = 300;     // This will be computed based on the input stream
 
 const streaming = false;
 
 let video = document.getElementById('video');
-video.setAttribute("width", width);
-video.setAttribute("height", height);
 video.style.position = "absolute";
 video.style.width = "50%";
 video.style.height = "50%";
+//video.style.aspectRatio = "1/1";
 video.style.top = "25%";
 video.style.left = "25%";
+
 let canvas = document.getElementById('canvas');
 let photo = document.getElementById('photo');
 let startbutton = document.getElementById('startbutton');
@@ -34,18 +40,17 @@ let startbutton = document.getElementById('startbutton');
 let boundbox = document.createElement("div");
 boundbox.style.width = "20%";
 boundbox.style.height = "20%";
+boundbox.style.aspectRatio = "1/1";
 boundbox.style.borderStyle = "solid";
 boundbox.style.borderColor = "red";
 // boundbox.style.zIndex = "1";
 boundbox.style.position = "absolute";
 boundbox.style.top = "40%";
 boundbox.style.left = "40%";
-//     <div id="square" style="width: 10px; height: 10px;   border-style: solid;
-//   border-color: red; z-index: 1; position: absolute; top: 100px; left: 160px">
-//     </div>
+
 
 navigator.mediaDevices
-  .getUserMedia({ video: true, audio: false })
+  .getUserMedia({ video: {facingMode: 'environment'}, audio: false })
   .then((stream) => {
     video.srcObject = stream;
     video.play();
@@ -84,7 +89,26 @@ function takepicture() {
   if (width && height) {
     canvas.width = width;
     canvas.height = height;
-    context.drawImage(video, 0, 0, width, height);
+    const camera_div = document.getElementById("camera_div");
+    const button_div = document.getElementById("button_div");
+    camera_div.remove();
+    button_div.remove();
+	let h = video.offsetHeight;
+    context.drawImage(video, 20, 20, 280, 280,0,0,280,280);	
+    
+    // insert yes or no buttons with listeners
+    let new_div = document.createElement("div");
+    new_div.style.textAlign = "center";
+    new_div.style.margin = "auto";
+    let yes = document.createElement("button");
+    yes.innerHTML = "Accept";
+    yes.addEventListener("click", () => {});
+	let no = document.createElement("button");
+	no.innerHTML = "Reject";
+	no.addEventListener("click", () => {location.reload();});
+	new_div.appendChild(yes);
+    new_div.appendChild(no);
+    document.body.appendChild(new_div);
 
     //const data = canvas.toDataURL("image/png");
     //photo.setAttribute("src", data);
