@@ -26,12 +26,13 @@ const height = 300;     // This will be computed based on the input stream
 const streaming = false;
 
 let video = document.getElementById('video');
+video.style.objectFit = "cover";
 video.style.position = "absolute";
 video.style.width = "50%";
 video.style.height = "50%";
-//video.style.aspectRatio = "1/1";
 video.style.top = "25%";
 video.style.left = "25%";
+video.style.outline = "solid";
 
 let canvas = document.getElementById('canvas');
 let photo = document.getElementById('photo');
@@ -40,9 +41,8 @@ let startbutton = document.getElementById('startbutton');
 let boundbox = document.createElement("div");
 boundbox.style.width = "20%";
 boundbox.style.height = "20%";
-boundbox.style.aspectRatio = "1/1";
-boundbox.style.borderStyle = "solid";
-boundbox.style.borderColor = "red";
+boundbox.style.outline = "5px dashed green";
+//boundbox.style.borderColor = "red";
 // boundbox.style.zIndex = "1";
 boundbox.style.position = "absolute";
 boundbox.style.top = "40%";
@@ -75,6 +75,8 @@ navigator.mediaDevices
 //   },
 //   false
 // );
+
+
 startbutton.addEventListener(
   "click",
   (ev) => {
@@ -87,14 +89,25 @@ startbutton.addEventListener(
 function takepicture() {
   const context = canvas.getContext("2d");
   if (width && height) {
-    canvas.width = width;
-    canvas.height = height;
+
+    let h = video.videoHeight;
+	let w = video.videoWidth;
+	let h_b = boundbox.offsetHeight;
+	let w_b = boundbox.offsetWidth;
+
+	let w_crop = Math.floor(2*w*0.4);
+	let h_crop = Math.floor(2*h*0.4);
+	let sy = Math.floor((h-h_b)/2);
+	let sx = Math.floor((w-w_b)/2);
+	canvas.width = w_b;
+    canvas.height = h_b;
     const camera_div = document.getElementById("camera_div");
     const button_div = document.getElementById("button_div");
     camera_div.remove();
     button_div.remove();
-	let h = video.offsetHeight;
-    context.drawImage(video, 20, 20, 280, 280,0,0,280,280);	
+
+	
+    context.drawImage(video, sx, sy, w_b, h_b,0,0,w_b,h_b);	
     
     // insert yes or no buttons with listeners
     let new_div = document.createElement("div");
