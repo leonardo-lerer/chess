@@ -2,7 +2,5 @@ flask>=2.3.2
 gunicorn==20.1.0
 numpy==1.22
 gfortran>=9
-scipy==1.9
 Pillow>=9.3
-tensorflow-cpu>=2.10
-xgboost>=1.7.3
+
