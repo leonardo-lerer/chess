@@ -9,9 +9,10 @@ def fun_open(data):
   im = Image.open(BytesIO(base64.b64decode(data)))
   im = np.array(im.resize((128,128)))
   im = x[np.newaxis,...]
-  im = np.reshape(conv_model(x), (1,-1))
+  
   conv_model = pickle.load(open("/static/conv_model.pkl, "rb"))
   xgb_model = pickle.load(open("/static/xgb_model.pkl, "rb"))
+  im = np.reshape(conv_model(x), (1,-1))
   res = xgb_model.predict_proba(x)
   return "try"
   
