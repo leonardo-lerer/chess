@@ -3,6 +3,7 @@ from io import BytesIO
 import numpy as np
 import pickle
 import base64
+import tensorflow as tf
 
 def fun_open(data):
   data = data[22:] + "===="
@@ -10,7 +11,7 @@ def fun_open(data):
   im = np.array(im.resize((128,128)))
   im = im[np.newaxis,...]
   
-  conv_model = pickle.load(open("static/conv_model.pkl", "rb"))
+  conv_model = tf.keras.models.load_model('static/conv_model.h5')
   xgb_model = pickle.load(open("static/xgb_model.pkl", "rb"))
   im = np.reshape(conv_model(x), (1,-1))
   res = xgb_model.predict_proba(x)
