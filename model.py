@@ -8,7 +8,7 @@ import lightgbm
 
 def fun_open(data):
   data = data[22:] + "===="
-  im = Image.open(BytesIO(base64.b64decode(data)))
+  im = Image.open(BytesIO(base64.b64decode(data))).convert('RGB')
   im = np.array(im.resize((128,128)))
   im = im[np.newaxis,...]
   
