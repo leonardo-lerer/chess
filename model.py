@@ -4,6 +4,7 @@ import numpy as np
 import pickle
 import base64
 import tensorflow as tf
+import lightgbm
 
 def fun_open(data):
   data = data[22:] + "===="
@@ -12,9 +13,9 @@ def fun_open(data):
   im = im[np.newaxis,...]
   
   conv_model = tf.keras.models.load_model('static/conv_model.h5')
-  xgb_model = pickle.load(open("static/xgb_model.pkl", "rb"))
-  im = np.reshape(conv_model(im), (1,-1))
-  res = xgb_model.predict_proba(im)
+  gbm_model = pickle.load(open("static/gbm_model.pkl", "rb"))
+  im = tf.reshape(conv_model(im), [1,-1])
+  res = gbm_model.predict(im)
   return "try"
   
   
