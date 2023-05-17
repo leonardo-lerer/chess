@@ -16,6 +16,6 @@ def fun_open(data):
   gbm_model = pickle.load(open("static/gbm_model.pkl", "rb"))
   im = tf.reshape(conv_model(im), [1,-1])
   res = gbm_model.predict(im)
-  return "try"
+  return res
   
   
