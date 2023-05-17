@@ -15,7 +15,7 @@ def fun_open(data):
   conv_model = tf.keras.models.load_model('static/conv_model.h5')
   gbm_model = pickle.load(open("static/gbm_model.pkl", "rb"))
   im = tf.reshape(conv_model(im), [1,-1])
-  res = gbm_model.predict(im)
+  res = np.array2string(gbm_model.predict(im), precision=3, separator=',')
   return res
   
   
