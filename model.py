@@ -10,8 +10,8 @@ def fun_open(data):
   im = np.array(im.resize((128,128)))
   im = im[np.newaxis,...]
   
-  conv_model = pickle.load(open("/static/conv_model.pkl", "rb"))
-  xgb_model = pickle.load(open("/static/xgb_model.pkl", "rb"))
+  conv_model = pickle.load(open("static/conv_model.pkl", "rb"))
+  xgb_model = pickle.load(open("static/xgb_model.pkl", "rb"))
   im = np.reshape(conv_model(x), (1,-1))
   res = xgb_model.predict_proba(x)
   return "try"
