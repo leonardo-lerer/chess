@@ -13,8 +13,8 @@ def fun_open(data):
   
   conv_model = tf.keras.models.load_model('static/conv_model.h5')
   xgb_model = pickle.load(open("static/xgb_model.pkl", "rb"))
-  im = np.reshape(conv_model(x), (1,-1))
-  res = xgb_model.predict_proba(x)
+  im = np.reshape(conv_model(im), (1,-1))
+  res = xgb_model.predict_proba(im)
   return "try"
   
   
