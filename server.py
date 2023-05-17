@@ -16,10 +16,10 @@ def home():
 def upload():
   params = request.get_json(force=True)
   im = params["img"]
-  im = model.fun_open(im)
+  pred = model.fun_open(im)
   
   
-  return "try"
+  return pred
   
 if __name__ == "__main__":
   app.run(debug=True)
