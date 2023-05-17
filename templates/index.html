@@ -186,7 +186,12 @@ function send_pic(data) {
         })
   })
   .then(function (response) {return response.text()})
-  .then(function (text) {console.log(text)}) 
+  .then(function (text) {
+  	new_div = document.createElement("div");
+	new_div.innerHTML = text;
+	document.body.appendChild(new_div);
+	return none
+  }) 
   .catch(function(error) {
         console.log(error);
     });
