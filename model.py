@@ -26,7 +26,7 @@ def fun_open(data):
   im = preprocess(im)
   im = tf.reshape(conv_model(im), [1,-1])
 #   res = int_to_str[np.argmax(gbm_model.predict(im))]
-  res = int_to_str[np.argmax(sk_log_reg.predict(im))]
+  res = int_to_str[np.argmax(sk_log_reg.predict_proba(im))]
   return res
 
   
