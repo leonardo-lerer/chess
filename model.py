@@ -5,7 +5,7 @@ import pickle
 import base64
 import tensorflow as tf
 # import lightgbm
-from sklearn import sklearn.linear_model
+import sklearn 
 
 int_to_str = {1: "wr", 2: "wn", 3: "wb", 4 : "wq", 5 : "wk", 6 : "wp",
               7 : "br", 8 : "bn", 9 : "bb", 10 : "bq", 11 : "bk", 12 : "bp",
