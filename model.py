@@ -4,7 +4,8 @@ import numpy as np
 import pickle
 import base64
 import tensorflow as tf
-import lightgbm
+# import lightgbm
+from sklearn import sklearn.linear_model
 
 int_to_str = {1: "wr", 2: "wn", 3: "wb", 4 : "wq", 5 : "wk", 6 : "wp",
               7 : "br", 8 : "bn", 9 : "bb", 10 : "bq", 11 : "bk", 12 : "bp",
@@ -14,7 +15,7 @@ preprocess = tf.keras.applications.mobilenet_v2.preprocess_input
 
 #gbm_model = pickle.load(open("static/gbm_model_new.pkl", "rb"))
 # log_reg = tf.keras.models.load_model('static/log_reg.h5')
-sk_log_reg = tf.keras.models.load_model('static/sk_log_reg.h5')
+sk_log_reg = pickle.load(open("static/sk_log_reg.pkl", "rb"))
 
 def fun_open(data):
   data = data[22:] + "===="
