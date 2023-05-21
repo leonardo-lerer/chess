@@ -17,13 +17,11 @@ def fun_open(data):
   data = data[22:] + "===="
   im = Image.open(BytesIO(base64.b64decode(data))).convert('L')
   im = np.array(im.resize((128,128)))
-  im = np.repeat(im[..., np.newaxis], 3, -1)
   im = im[np.newaxis,...]
+  im = np.repeat(im[..., np.newaxis], 3, -1)
   im = tf.reshape(conv_model(im), [1,-1])
 #   res = int_to_str[np.argmax(gbm_model.predict(im))]
   res = int_to_str[np.argmax(log_reg.predict(im))]
-
-#   res = np.array2string(gbm_model.predict(im), precision=3, separator=',')
   return res
 
   
