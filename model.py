@@ -15,7 +15,7 @@ preprocess = tf.keras.applications.mobilenet_v2.preprocess_input
 
 #gbm_model = pickle.load(open("static/gbm_model_new.pkl", "rb"))
 # log_reg = tf.keras.models.load_model('static/log_reg.h5')
-sk_log_reg = pickle.load(open("static/sk_log_reg.pkl", "rb"))
+sk_log_reg = pickle.load(open("static/sk_log_reg_v2.pkl", "rb"))
 
 def fun_open(data):
   data = data[22:] + "===="
