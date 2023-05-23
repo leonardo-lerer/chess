@@ -213,7 +213,8 @@ function create_board() {
 	  square.classList.add('square');
 	  const row = 7 - Math.floor(i / 8);
 	  const col = i % 8;
-	  square.id = "${row}${col}";
+	  square.setAttribute("id", row.toString(10) + col.toString(10));
+		
   
 	  const isWhite = (i + Math.floor(i / 8)) % 2 === 0;
 	  square.classList.add(isWhite ? 'white' : 'black'); 
