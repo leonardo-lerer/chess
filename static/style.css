@@ -1,3 +1,127 @@
+span {
+    display: table;
+    margin: 0 auto;
+}
+
+#board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 480px;
+  height: 480px;
+  margin: auto;
+}
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 480px;
+  height: 480px;
+  margin: auto;
+}
+
+.square {
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  font-size: 40px;
+}
+
+.white {
+  background-color: #f0d9b5;
+}
+
+.black {
+  background-color: #b58863;
+}
+
+.selected {
+  /* border: 1px solid yellow;
+  box-sizing: border-box;*/
+  font-size: 40px;
+  text-align: center;
+  background-color: blue;
+  opacity: 1;
+  
+}
+
+
+
+.black_pawn::after {
+  content: "\265F";
+}
+
+.black_rook::after {
+  content: "\265C";
+}
+
+
+.black_knight::after {
+  content: "\265E";
+}
+
+
+.black_bishop::after {
+  content: "\265D";
+}
+
+
+.black_queen::after {
+  content: "\265B";
+}
+
+.black_king::after {
+  content: "\265A";
+}
+
+
+.white_pawn::after {
+  content: "\2659";
+}
+
+.white_rook::after {
+  content: "\2656";
+}
+
+
+.white_knight::after {
+  content: "\2658";
+}
+
+.white_bishop::after {
+  content: "\2657";
+}
+
+
+.white_queen::after {
+  content: "\2655";
+}
+
+.white_king::after {
+  content: "\2654";
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #FFF;
+    border-bottom-color: black;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
+
+
+
 .button-17 {
   align-items: center;
   appearance: none;
