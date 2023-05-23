@@ -240,7 +240,7 @@ function create_board() {
 
 function create_loader() {
 	div_loader = document.createElement("div");
-	div_loader.setAttribute(‘id’,‘div_loader’);
+	div_loader.setAttribute("id","div_loader");
 	div_loader.style.textAlign = "center";
 	div_loader.style.position = "relative";
 	div_loader.style.top = "20px";
