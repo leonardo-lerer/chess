@@ -162,8 +162,11 @@ function takepicture() {
 	startbutton.remove();
 	context.drawImage(video, sx, sy, true_dim, true_dim,0,0,BOX_SIDE,BOX_SIDE);	
   data = canvas.toDataURL();
-  console.log(data);
+//   console.log(data);
+  create_board();
+  create_loader();
   send_pic(data);
+
 }
   
 function send_pic(data) {
@@ -175,7 +178,8 @@ function send_pic(data) {
   })
   .then(function (response) {return response.text()})
   .then(function (text) {
-  	new_div = document.createElement("div");
+	document.getElementById("div_loader").remove();
+  new_div = document.createElement("div");
 	new_div.innerHTML = text;
 	document.body.appendChild(new_div);
 	return none
@@ -184,3 +188,65 @@ function send_pic(data) {
         console.log(error);
     });
 }
+
+function create_board() {
+  const board = document.createElement('div');
+	board.classList.add("board");
+	let selectedSquare = null;
+
+	for (let i = 0; i < 64; i++) {
+	  const square = document.createElement('div');
+	  square.classList.add('square');
+	  const row = 7 - Math.floor(i / 8);
+	  const col = i % 8;
+	  square.id = "${row}${col}";
+  
+	  const isWhite = (i + Math.floor(i / 8)) % 2 === 0;
+	  square.classList.add(isWhite ? 'white' : 'black'); 
+  
+	  square.addEventListener('click', () => {
+		if (selectedSquare) {
+		  selectedSquare.classList.remove('selected');
+		  if (square.innerHTML.length == 0) {
+			let content = selectedSquare.innerHTML;
+			selectedSquare.innerHTML = "";
+			square.innerHTML = content;
+		  }
+		  selectedSquare = null;
+		}
+	
+		else { 
+	  
+	
+		selectedSquare = square;
+		selectedSquare.classList.add('selected');
+		}
+	});
+
+	//   square.addEventListener('click', () => {
+	//     if (selectedSquare) {
+	//       selectedSquare.classList.remove('selected');
+	//     }
+	//     selectedSquare = square;
+	//     selectedSquare.classList.add('selected');
+	// });
+	
+  
+	  board.appendChild(square);
+  
+	}
+	document.body.appendChild(board);
+}
+
+function create_loader() {
+	div_loader = document.createElement("div");
+	div_loader.setAttribute(‘id’,‘div_loader’);
+	div_loader.style.textAlign = "center";
+	div_loader.style.position = "relative";
+	div_loader.style.top = "20px";
+	loader = document.createElement("span");
+	loader.classList.add("loader");
+	div_loader.appendChild(loader);
+	document.body.appendChild(div_loader);
+}
+
