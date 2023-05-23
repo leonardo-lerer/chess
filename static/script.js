@@ -195,7 +195,7 @@ function send_pic(data) {
   .then(function (response) {return response.text()})
   .then(function (text) {
 	document.getElementById("div_loader").remove();
-	document.getElementById("00").innerHTML = str_to_html(text);
+	document.getElementById("00").innerHTML = str_to_html[text];
 	return none
   }) 
   .catch(function(error) {
