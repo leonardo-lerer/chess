@@ -17,6 +17,22 @@ var HEIGHT_GLOBAL = window.innerHeight;
 // side length of the bounding box square
 var BOX_SIDE = null;
 
+const str_to_html = {
+  "wr" : "&#9814",
+  "wn" : "&#9816",
+  "wb" : "&#9815",
+  "wq" : "&#9813",
+  "wk" : "&#9812",
+  "wp" : "&#9817",
+  "bp": "&#9823" ,
+  "br": "&#9820" ,
+  "bn": "&#9822" ,
+  "bb": "&#9821" ,
+  "bq": "&#9819" ,
+  "bk": "&#9818" ,
+}
+
+
 navigator.mediaDevices
   .getUserMedia({ video: {facingMode: 'environment'}, audio: false })
   .then((stream) => {
@@ -179,9 +195,7 @@ function send_pic(data) {
   .then(function (response) {return response.text()})
   .then(function (text) {
 	document.getElementById("div_loader").remove();
-  new_div = document.createElement("div");
-	new_div.innerHTML = text;
-	document.body.appendChild(new_div);
+	document.getElementById("00").innerHTML = str_to_html(text);
 	return none
   }) 
   .catch(function(error) {
@@ -221,19 +235,8 @@ function create_board() {
 		selectedSquare = square;
 		selectedSquare.classList.add('selected');
 		}
-	});
-
-	//   square.addEventListener('click', () => {
-	//     if (selectedSquare) {
-	//       selectedSquare.classList.remove('selected');
-	//     }
-	//     selectedSquare = square;
-	//     selectedSquare.classList.add('selected');
-	// });
-	
-  
+	});  
 	  board.appendChild(square);
-  
 	}
 	document.body.appendChild(board);
 }
